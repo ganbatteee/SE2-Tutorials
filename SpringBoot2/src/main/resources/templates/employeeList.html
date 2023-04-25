@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div class="container col-md-6 text-center mt-4">
+<h1 class="text text-danger">Employee List</h1>
+    <a th:href="@{/add}" class="btn btn-success">Add</a>
+<!--    <a th:href="@{/edit}" class="btn btn-warning">Save</a>-->
+<!--    <a th:href="@{/add}" class="btn btn-danger">Delete</a>-->
+<!--    <input type="submit" class="btn btn-success" value="Add"/>-->
+<table class="table table-primary mt-3">
+    <thead>
+    <tr>
+        <th>Employee ID</th>
+        <th>Employee Name</th>
+        <th>Employee Image</th>
+        <th>Employee Address</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee: ${employees}">
+        <td><span th:text="${employee.id}"></span></td>
+        <td><span th:text="${employee.name}"></span></td>
+        <td><img th:src="${employee.image}" width="200px" height="200px"></td>
+        <td><span th:text="${employee.address}"></span></td>
+        <td><a th:href="@{/edit(id=${employee.id})}" class="btn btn-info">Edit</a></td>
+        <td><a th:href="@{/delete(id=${employee.id})}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="_layout">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="container col-md-6 text-center mt-4">
+    <h1 class="text text-danger">Company List</h1>
+    <a th:href="'/company/add'" class="nt-3 mb-3">
+      <img th:src="@{/images/addbtn.png}" width="50" height="50"/>
+    </a>
+    <!--    <a th:href="@{/edit}" class="btn btn-warning">Save</a>-->
+    <!--    <a th:href="@{/add}" class="btn btn-danger">Delete</a>-->
+    <!--    <input type="submit" class="btn btn-success" value="Add"/>-->
+    <table class="table table-primary mt-3">
+      <thead>
+      <tr>
+        <th>Company ID</th>
+        <th>Company Name</th>
+        <th>Company Image</th>
+        <th>Company Address</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="company: ${companies}">
+        <td><span th:text="${company.id}"></span></td>
+        <td><span th:text="${company.name}"></span></td>
+        <td><img th:src="${company.image}" width="100px" height="100px"></td>
+        <td><span th:text="${company.address}"></span></td>
+        <td><a th:href="'/company/update/' + ${company.id}" >
+          <img th:src="@{/images/updatebtn.png}" width="50px" height="50px"/>
+        </a></td>
+        <td><a th:href="'/company/delete/' + ${company.id}" onclick="return confirm('Do you want to delete this company?');">
+          <img th:src="@{/images/deletebtn.png}" width="50px" height="50px">
+        </a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>
